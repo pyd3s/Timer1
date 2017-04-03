@@ -6,6 +6,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.clock import Clock
 from kivy.uix.popup import Popup
+from kivy.core.audio import SoundLoader
 import sys
 import time
    
@@ -31,6 +32,7 @@ class P_Timmer(GridLayout):
         self.fresh_label.text=str(self.text)
         new_test=int(self.text)
         if new_test <=0:
+            self.p_sound()
             contentb = Button(text='Job Done!')
             popup = Popup(title="Pydes Timer",content=contentb,auto_dismiss=False)
             contentb.bind(on_press=popup.dismiss)
@@ -46,7 +48,12 @@ class P_Timmer(GridLayout):
     def p_exit(self,isinstance):
         print 'Exit App'
         sys.exit()
-
+    def p_sound(self):
+        sound = SoundLoader.load('ring.mp3')
+        if sound:
+            print("Sound found at %s" % sound.source)
+            print("Sound is %.3f seconds" % sound.length)
+            sound.play()
 class TimerApp(App):
     def build(self):
         return P_Timmer()
