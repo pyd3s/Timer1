@@ -1,4 +1,4 @@
-### 生成APP
+### Python Kivy 生成APP
 ```Shell
 cd /opt
 git clone https://github.com/kivy/buildozer.git 
